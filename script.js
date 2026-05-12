@@ -1,49 +1,492 @@
-// Mobile nav toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
 
-// Close nav on link click
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+        const portfolioData = [
+            {
+                id: 1,
+                title: 'Web Development',
+                description: 'Modern, responsive, and high-performance websites tailored to business needs. From corporate websites to complex web applications, I ensure clean coding standards, mobile responsiveness, SEO optimization, and fast loading speeds.',
+                image: 'images/web.jpeg',
+                tech: ['Frontend', 'Backend', 'API']
+            },
+            {
+                id: 2,
+                title: 'Mobile App Development',
+                description: 'Intuitive and performance-optimized mobile applications for Android and cross-platform environments. From UI/UX design to deployment, I develop apps that are user-friendly, scalable, and aligned with business goals',
+                image: 'images/mobile.jpeg',
+                tech: ['Android', 'Flutter']
+            },
+            {
+                id: 3,
+                title: 'Desktop Software Development',
+                description: 'Develop custom desktop applications and business tools designed to automate tasks and improve productivity. My software solutions are stable, offline-capable, and tailored to specific workflows',
+                image: 'images/software.png',
+                tech: ['Electron', 'Java', 'Python', 'Node.js']
+            },
+            {
+                id: 4,
+                title: 'UI/UX Design',
+                description: 'Design clean, modern, and user-focused interfaces for websites, mobile apps, and software platforms.',
+                image: 'images/ux-ui.png',
+                tech: ['Figma', 'Photoshop']
+            },
+            {
+                id: 5,
+                title: 'Graphics & Brand Identity Design',
+                description: 'Create impactful visual designs that communicate brand identity effectively. Services include logo design, flyers, posters, banners, social media creatives, and full branding kits',
+                image: 'images/graphics.jpeg',
+                tech: ['Adobe Illustrator', 'CorelDraw', 'Photoshop']
+            },
+            {
+                id: 6,
+                title: 'API Integration & Backend Development',
+                description: 'Develop and integrate secure backend systems and APIs that power web and mobile applications.',
+                image: 'images/api-backend-mobile.png',
+                tech: ['MongoDB', 'Openai', 'MySQL']
+            },
+            {
+                id: 7,
+                title: 'Automation Tools & Custom Scripts',
+                description: 'Create automation tools and custom scripts that reduce manual work and improve efficiency.',
+                image: 'images/automated.jpeg',
+                tech: ['Python']
+            }
+        ];
 
-// Navbar scroll effect
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-  navbar.style.background = window.scrollY > 50
-    ? 'rgba(10,10,10,0.98)'
-    : 'rgba(10,10,10,0.85)';
-});
+        // Skills data
+        const skillsData = [
+            { name: 'React.js', icon: '<img src="waris-icons/react.svg" alt="o">', level: 95, category: 'frontend' },
+            { name: 'Node.js', icon: '<img src="waris-icons/nodejs_small.svg" alt="o">', level: 90, category: 'backend' },
+            { name: 'JavaScript', icon: '<img src="waris-icons/javascript.svg" alt="o">', level: 87, category: 'frontend' },
+            { name: 'HTML', icon: '<img src="waris-icons/html5.svg" alt="o">', level: 98, category: 'frontend' },
+            { name: 'CSS ', icon: '<img src="waris-icons/css3.svg" alt="o">', level: 98, category: 'frontend' },
+            { name: 'AWS', icon: '<img src="waris-icons/aws.svg" alt="o">', level: 72, category: 'cloud' },
+            { name: 'Vercel', icon: '<img src="waris-icons/vercel.svg" alt="o">', level: 85, category: 'cloud' },
+            { name: 'Bootstrap CSS', icon: '<img src="waris-icons/bootstrap.svg" alt="o">', level: 79, category: 'frontend' },
+            { name: 'Python', icon: '<img src="waris-icons/python.svg" alt="o">', level: 93, category: 'backend' },
+            { name: 'PHP', icon: '<img src="waris-icons/php.svg" alt="o">', level: 86, category: 'backend' },
+            { name: 'Java', icon: '<img src="waris-icons/java.svg" alt="o">', level: 92, category: 'app' },
+            { name: 'Kotlin', icon: '<img src="waris-icons/kotlin.svg" alt="o">', level: 75, category: 'app' },
+            { name: 'Figma', icon: '<img src="waris-icons/figma.svg" alt="o">', level: 95, category: 'tools' },
+            { name: 'Flutter', icon: '<img src="waris-icons/flutter.svg" alt="o">', level: 80, category: 'app' },
+            { name: 'CI/CD', icon: '<img src="waris-icons/ci-cd.svg" alt="o">', level: 75, category: 'cloud' },
+            { name: 'Git/Github', icon: '<img src="waris-icons/github-square.svg" alt="o">', level: 90, category: 'tools' },
+            { name: 'Docker', icon: '<img src="waris-icons/docker.svg" alt="o">', level: 70, category: 'tools' },
+            { name: 'Vue.js', icon: '<img src="waris-icons/vue.svg" alt="o">', level: 85, category: 'frontend' },
+            { name: 'REST APIs', icon: '<img src="waris-icons/rest-api.svg" alt="o">', level: 88, category: 'tools' },
+            { name: 'MySQL', icon: '<img src="waris-icons/mysql.svg" alt="o">', level: 95, category: 'backend' },
+            { name: 'MongoDB', icon: '<img src="waris-icons/mongodb.svg" alt="o">', level: 90, category: 'backend' },
+            { name: 'Adobe Illustrator', icon: '<img src="waris-icons/illustrator.svg" alt="o">', level: 95, category: 'design' },
+            { name: 'Tailwind CSS', icon: '<img src="waris-icons/tailwind.svg" alt="o">', level: 80, category: 'frontend' },
+            { name: 'Photoshop', icon: '<img src="waris-icons/photoshop.svg" alt="o">', level: 92, category: 'design' },
+        ];
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = document.getElementById('header');
+            if (section) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = section.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
 
-document.querySelectorAll('.about-card, .season-card, .char-card, .gallery-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
+        // Initialize particles for philosophy section
+        function initParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random horizontal position
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Start particles at random vertical positions throughout the section
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay for natural movement
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                
+                // Random animation duration for variety
+                particle.style.animationDuration = (18 + Math.random() * 8) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.visible').forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'translateY(0)';
-  });
-});
+        // Initialize carousel
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const indicatorsContainer = document.getElementById('indicators');
 
-// Patch for IntersectionObserver visible class
-const style = document.createElement('style');
-style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
-document.head.appendChild(style);
+        function createCarouselItem(data, index) {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            item.dataset.index = index;
+            
+            const techBadges = data.tech.map(tech => 
+                `<span class="tech-badge">${tech}</span>`
+            ).join('');
+            
+            item.innerHTML = `
+                <div class="card">
+                    <div class="card-number">0${data.id}</div>
+                    <div class="card-image">
+                        <img src="${data.image}" alt="${data.title}">
+                    </div>
+                    <h3 class="card-title">${data.title}</h3>
+                    <p class="card-description">${data.description}</p>
+                    <div class="card-tech">${techBadges}</div>
+                    <button class="card-cta" onclick="scrollToSection('about')">Explore</button>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        function initCarousel() {
+            // Create carousel items
+            portfolioData.forEach((data, index) => {
+                const item = createCarouselItem(data, index);
+                carousel.appendChild(item);
+                
+                // Create indicator
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.dataset.index = index;
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('.indicator');
+            const totalItems = items.length;
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 1024;
+            
+            items.forEach((item, index) => {
+                // Calculate relative position
+                let offset = index - currentIndex;
+                
+                // Wrap around for continuous rotation
+                if (offset > totalItems / 2) {
+                    offset -= totalItems;
+                } else if (offset < -totalItems / 2) {
+                    offset += totalItems;
+                }
+                
+                const absOffset = Math.abs(offset);
+                const sign = offset < 0 ? -1 : 1;
+                
+                // Reset transform
+                item.style.transform = '';
+                item.style.opacity = '';
+                item.style.zIndex = '';
+                item.style.transition = 'all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)';
+                
+                // Adjust spacing based on screen size
+                let spacing1 = 400;
+                let spacing2 = 600;
+                let spacing3 = 750;
+                
+                if (isMobile) {
+                    spacing1 = 280;  // Was 400, now 100px closer
+                    spacing2 = 420;  // Was 600, now 180px closer
+                    spacing3 = 550;  // Was 750, now 200px closer
+                } else if (isTablet) {
+                    spacing1 = 340;
+                    spacing2 = 520;
+                    spacing3 = 650;
+                }
+                
+                if (absOffset === 0) {
+                    // Center item
+                    item.style.transform = 'translate(-50%, -50%) translateZ(0) scale(1)';
+                    item.style.opacity = '1';
+                    item.style.zIndex = '10';
+                } else if (absOffset === 1) {
+                    // Side items
+                    const translateX = sign * spacing1;
+                    const rotation = isMobile ? 25 : 30;
+                    const scale = isMobile ? 0.88 : 0.85;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-200px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.8';
+                    item.style.zIndex = '5';
+                } else if (absOffset === 2) {
+                    // Further side items
+                    const translateX = sign * spacing2;
+                    const rotation = isMobile ? 35 : 40;
+                    const scale = isMobile ? 0.75 : 0.7;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-350px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.5';
+                    item.style.zIndex = '3';
+                } else if (absOffset === 3) {
+                    // Even further items
+                    const translateX = sign * spacing3;
+                    const rotation = isMobile ? 40 : 45;
+                    const scale = isMobile ? 0.65 : 0.6;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-450px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.3';
+                    item.style.zIndex = '2';
+                } else {
+                    // Hidden items (behind)
+                    item.style.transform = 'translate(-50%, -50%) translateZ(-500px) scale(0.5)';
+                    item.style.opacity = '0';
+                    item.style.zIndex = '1';
+                }
+            });
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % portfolioData.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + portfolioData.length) % portfolioData.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        // Initialize hexagonal skills grid
+        function initSkillsGrid() {
+            const skillsGrid = document.getElementById('skillsGrid');
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            
+            function displaySkills(category = 'all') {
+                skillsGrid.innerHTML = '';
+                
+                const filteredSkills = category === 'all' 
+                    ? skillsData 
+                    : skillsData.filter(skill => skill.category === category);
+                
+                filteredSkills.forEach((skill, index) => {
+                    const hexagon = document.createElement('div');
+                    hexagon.className = 'skill-hexagon';
+                    hexagon.style.animationDelay = `${index * 0.1}s`;
+                    
+                    hexagon.innerHTML = `
+                        <div class="hexagon-inner">
+                            <div class="hexagon-content">
+                                <div class="skill-icon-hex">${skill.icon}</div>
+                                <div class="skill-name-hex">${skill.name}</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="width: ${skill.level}%"></div>
+                                </div>
+                                <div class="skill-percentage-hex">${skill.level}%</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    skillsGrid.appendChild(hexagon);
+                });
+            }
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    displaySkills(tab.dataset.category);
+                });
+            });
+            
+            displaySkills();
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // Auto-rotate carousel
+        setInterval(nextSlide, 5000);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Update carousel on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateCarousel();
+            }, 250);
+        });
+
+        // Initialize on load
+        initCarousel();
+        initSkillsGrid();
+        initParticles();
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling and active navigation
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // Update active navigation on scroll
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        const href = link.getAttribute('href').substring(1);
+                        if (href === sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Animated counter for stats
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const counter = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(counter);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for stats animation
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(number => {
+                        if (!number.classList.contains('animated')) {
+                            number.classList.add('animated');
+                            animateCounter(number);
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert(`Thank you ${data.name}! Your message has been transmitted successfully. We'll respond within 24 hours.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+        // Tab Switching
+function switchTab(btn, tabId) {
+   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+   btn.classList.add('active');
+
+   document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+   document.getElementById(tabId).classList.add('active');
+}
